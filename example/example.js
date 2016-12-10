@@ -37,27 +37,27 @@
             
             getById: function (id) {
 
-                // return requesterNg.getById("/user" + id).then(function (user) {
-                //
-                // });
+                return requesterNg.getById("/user" + id).then(function (user) {
+
+                });
 
                 return requesterNg.getById("/user" + id);
             }, 
             
             save: function (data) {
 
-                // return requesterNg.post("/user", data).then(function (savedUser) {
-                //
-                // });
+                return requesterNg.post("/user", data).then(function (savedUser) {
+
+                });
 
                 return requesterNg.post("/user", data);
             },
             
             update: function (data) {
 
-                // return requesterNg.put("/user", data).then(function (updatedUser) {
-                //
-                // });
+                return requesterNg.put("/user", data).then(function (updatedUser) {
+
+                });
 
                 return requesterNg.put("/user", data);
             }, 
@@ -65,9 +65,9 @@
             remove: function (id) {
 
                 // after Status Code: 200
-                // return requesterNg.delete("/user", data).then(function () {
-                //      users.splice(users.indexOff(user), 1);
-                // });
+                return requesterNg.delete("/user" + id).then(function () {
+                     users.splice(users.indexOff(user), 1);
+                });
 
                 return requesterNg.delete("/user" + id);
             }
