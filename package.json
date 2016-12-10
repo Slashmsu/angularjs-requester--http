@@ -1,0 +1,15 @@
+{
+  "name": "angularjs-requester--http",
+  "version": "0.0.1",
+  "description": "Simply way todo GET, POST, PUT and DELETE requestes",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Slashmsu/angularjs-requester--http.git"
+  },
+  "author": "Bakhtier Gaibulloev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Slashmsu/angularjs-requester--http/issues"
+  },
+  "homepage": "https://github.com/Slashmsu/angularjs-requester--http#readme"
+}
