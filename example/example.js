@@ -41,7 +41,7 @@
                 //
                 // });
 
-                return requesterNg.getById("/user" + id);
+                return requesterNg.getById("/user/" + id);
             }, 
             
             save: function (data) {
@@ -69,7 +69,7 @@
                 //      users.splice(users.indexOff(user), 1);
                 // });
 
-                return requesterNg.delete("/user" + id);
+                return requesterNg.delete("/user/" + id);
             }
         };
     }

@@ -4,93 +4,94 @@
 
 'use strict';
 
-var config = { url: null, token: null };
+var url;
 
 angular.module('RequesterModule', [])
-       .service('requesterNg', function($http) {
+    .service('requesterNg', function($http) {
 
-           if (config.token != null)
-                $http.defaults.headers.common.Authorization = 'Basic ' + config.token;
+        //=============Configurations===================================================================================
 
-            //=============Configurations===================================================================================
+        // set url to server
+        this.setUrl = function (u) {
+            url = u
+        };
 
-           this.setUrl = function (url) {
-                config.url = url
-           };
+        // get url to server
+        this.getUrl = function () {
+            return url
+        };
 
-           this.getUrl = function () {
-               return config.url
-           };
+        // to set token to header
+        this.setToken = function (token) {
+            $http.defaults.headers.common['Authorization'] = "Bearer " + token;
+        };
 
-           this.setToken = function (token) {
-                config.token = token
-           };
+        // clear token from header
+        this.clearToken = function () {
+            $http.defaults.headers.common['Authorization'] = ''
+        };
 
-           this.removeToken = function () {
-                config.token = null
-           };
+        //==============================================================================================================
 
-            //==============================================================================================================
+        this.get = function (apiRoute, params) {
+            return $http({
+                method: 'GET',
+                url: url + apiRoute,
+                params: params
+            }).then(function successCallback(response) {
+                return response.data;
+            }, function errorCallback(response) {
+                console.log(response);
+            });
+        };
 
-            this.get = function (apiRoute, params) {
-                return $http({
-                    method: 'GET',
-                    url: config.url + apiRoute,
-                    params: params
-                }).then(function successCallback(response) {
-                    return response.data;
-                }, function errorCallback(response) {
-                    console.log(response);
-                });
-            };
+        this.getById = function (apiRoute) {
+            return $http({
+                method: 'GET',
+                url: url + apiRoute
+            }).then(function successCallback(response) {
+                return response.data;
+            }, function errorCallback(response) {
+                console.log(response);
+            });
+        };
 
-            this.getById = function (apiRoute) {
-                return $http({
-                    method: 'GET',
-                    url: config.url + apiRoute
-                }).then(function successCallback(response) {
-                    return response.data;
-                }, function errorCallback(response) {
-                    console.log(response);
-                });
-            };
+        this.post = function (apiRoute, data) {
+            return $http({
+                method: 'POST',
+                url: url + apiRoute,
+                data: data
+            }).then(function successCallback(response) {
+                return response.data;
+            }, function errorCallback(response) {
+                console.log(response);
+            });
+        };
 
-            this.post = function (apiRoute, data) {
-                return $http({
-                    method: 'POST',
-                    url: config.url + apiRoute,
-                    data: data
-                }).then(function successCallback(response) {
-                    return response.data;
-                }, function errorCallback(response) {
-                    console.log(response);
-                });
-            };
+        this.put = function (apiRoute, data) {
+            return $http({
+                method: 'PUT',
+                url: url + apiRoute,
+                data: data
+            }).then(function successCallback(response) {
+                return response.data;
+            }, function errorCallback(response) {
+                console.log(response);
+            });
+        };
 
-            this.put = function (apiRoute, data) {
-                return $http({
-                    method: 'PUT',
-                    url: config.url + apiRoute,
-                    data: data
-                }).then(function successCallback(response) {
-                    return response.data;
-                }, function errorCallback(response) {
-                    console.log(response);
-                });
-            };
+        this.delete = function (apiRoute) {
+            return $http({
+                method: 'DELETE',
+                url: url + apiRoute,
+                data: id
+            }).then(function successCallback(response) {
+                return response.data;
+            }, function errorCallback(response) {
+                console.log(response);
+            });
+        };
 
-            this.delete = function (apiRoute) {
-                return $http({
-                    method: 'DELETE',
-                    url: config.url + apiRoute,
-                    data: id
-                }).then(function successCallback(response) {
-                    return response.data;
-                }, function errorCallback(response) {
-                    console.log(response);
-                });
-            };
-
-       });
+    });
 
 

@@ -1,10 +1,10 @@
-# Angularjs-requester-http
+#Angularjs-requester-http
 Simply way todo GET, POST, PUT and DELETE requestes
 
-### Installing
+###Installing:
 
 ```
-npm i angularjs-requester--http
+npm i angularjs-requester--http --save
 ```
 
 Add `'RequesterModule'` to your main module's list of dependencies.
@@ -22,14 +22,13 @@ When you're done, your setup should look similar to the following:
     ...
     <script>
         var myApp = angular.module('myApp', ['RequesterModule']);
-
     </script>
     ...
 </body>
 </html>
 ```
 
-### Exmples
+###Examples:
 
 What things you need to install the software and how to install them
 
@@ -89,7 +88,7 @@ or
 return requesterNg.delete("/user" + id);
 ```
 
-##Work example 
+##Work example: 
 ```
 (function () {
     'use strict';
@@ -167,6 +166,29 @@ return requesterNg.delete("/user" + id);
         };
     }
 })();
+```
+
+##Set and Remove token:
+
+Set 
+```
+ function LoginCtrl($scope, requesterNg) {
+     $scope.login = function (user) {
+         UserRepository.authenticate(user).then(function successCallback(user.token) {
+             requesterNg.setToken(user.token);
+             $location.path("/");
+         });
+     };
+ }
+
+```
+Remove 
+```
+function LoginCtrl($scope, requesterNg) {
+     $scope.logOut = function() {
+         requesterNg.clearToken();
+     };
+ }
 ```
 
 
