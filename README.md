@@ -85,7 +85,7 @@ DELETE
 ```
 or 
 ```
-return requesterNg.delete("/user" + id);
+return requesterNg.delete("/user/" + id);
 ```
 
 ##Set and Remove token:
