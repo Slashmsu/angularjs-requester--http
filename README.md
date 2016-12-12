@@ -35,7 +35,7 @@ What things you need to install the software and how to install them
 GET
 
 ```
- return requesterNg.get("/user", filter).then(function (users) {
+ return requesterNg.get("/user/", filter).then(function (users) {
     console.log(users);
     return users;
  });
@@ -43,13 +43,13 @@ GET
 ```
 or 
 ```
-return requesterNg.get("/user", filter);
+return requesterNg.get("/user/", filter);
 ```
 
 POST
 
 ```
- return requesterNg.post("/user", data).then(function (savedUser) {
+ return requesterNg.post("/user/", data).then(function (savedUser) {
     console.log(savedUser);
     return savedUser;
  });
@@ -57,13 +57,13 @@ POST
 ```
 or 
 ```
-return requesterNg.post("/user", data);
+return requesterNg.post("/user/", data);
 ```
 
 PUT
 
 ```
- return requesterNg.post("/user", data).then(function (updatedUser) {
+ return requesterNg.post("/user/", data).then(function (updatedUser) {
     console.log(updatedUser);
     return updatedUser;
  });
@@ -71,14 +71,14 @@ PUT
 ```
 or 
 ```
-return requesterNg.post("/user", data);
+return requesterNg.post("/user/", data);
 ```
 
 DELETE
 
 ```
  // After Status Code: 200
- return requesterNg.delete("/user" + id).then(function () {
+ return requesterNg.delete("/user/" + id).then(function () {
       return users.splice(users.indexOff(user), 1);
  });
 
@@ -87,6 +87,29 @@ or
 ```
 return requesterNg.delete("/user" + id);
 ```
+
+##Set and Remove token:
+
+Set 
+```
+ function LoginCtrl($scope, requesterNg) {
+     $scope.login = function (user) {
+         UserRepository.authenticate(user).then(function successCallback(user.token) {
+             requesterNg.setToken(user.token);
+         });
+     };
+ }
+
+```
+Remove 
+```
+function LoginCtrl($scope, requesterNg) {
+     $scope.logOut = function() {
+         requesterNg.clearToken();
+     };
+ }
+```
+
 
 ##Work example: 
 ```
@@ -120,75 +143,50 @@ return requesterNg.delete("/user" + id);
             
             getList: function (filter) {
 
-                // return requesterNg.get("/user", filter).then(function (users) {
+                // return requesterNg.get("/user/", filter).then(function (users) {
                 //
                 // });
 
-                return requesterNg.get("/user", filter);
+                return requesterNg.get("/user/", filter);
             }, 
             
             getById: function (id) {
 
-                // return requesterNg.getById("/user" + id).then(function (user) {
+                // return requesterNg.getById("/user/" + id).then(function (user) {
                 //
                 // });
 
-                return requesterNg.getById("/user" + id);
+                return requesterNg.getById("/user/" + id);
             }, 
             
             save: function (data) {
 
-                // return requesterNg.post("/user", data).then(function (savedUser) {
+                // return requesterNg.post("/user/", data).then(function (savedUser) {
                 //
                 // });
 
-                return requesterNg.post("/user", data);
+                return requesterNg.post("/user/", data);
             },
             
             update: function (data) {
 
-                // return requesterNg.put("/user", data).then(function (updatedUser) {
+                // return requesterNg.put("/user/", data).then(function (updatedUser) {
                 //
                 // });
 
-                return requesterNg.put("/user", data);
+                return requesterNg.put("/user/", data);
             }, 
             
             remove: function (id) {
 
                 // after Status Code: 200
-                // return requesterNg.delete("/user" + id).then(function () {
+                // return requesterNg.delete("/user/" + id).then(function () {
                 //      users.splice(users.indexOff(user), 1);
                 // });
 
-                return requesterNg.delete("/user" + id);
+                return requesterNg.delete("/user/" + id);
             }
         };
     }
 })();
 ```
-
-##Set and Remove token:
-
-Set 
-```
- function LoginCtrl($scope, requesterNg) {
-     $scope.login = function (user) {
-         UserRepository.authenticate(user).then(function successCallback(user.token) {
-             requesterNg.setToken(user.token);
-             $location.path("/");
-         });
-     };
- }
-
-```
-Remove 
-```
-function LoginCtrl($scope, requesterNg) {
-     $scope.logOut = function() {
-         requesterNg.clearToken();
-     };
- }
-```
-
-

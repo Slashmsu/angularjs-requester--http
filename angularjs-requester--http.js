@@ -21,7 +21,7 @@ angular.module('RequesterModule', [])
             return url
         };
 
-        // to set token to header
+        // set token to header
         this.setToken = function (token) {
             $http.defaults.headers.common['Authorization'] = "Bearer " + token;
         };
